@@ -2,6 +2,10 @@
 
 Sort the imports in Python scripts by length.
 
+## Usage
+
+    python impsort.py in.py > out.py
+
 ## Feature
 
 * Sort imports by length without comments.
