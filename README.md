@@ -8,6 +8,9 @@ Sort the imports in Python scripts by length.
 
 ## Feature
 
+**WARNING:** Due to a [bug](https://bugs.python.org/issue24447) in `tokenize.untokenize`, the result may not be correct
+when using tabs for indentation.
+
 * Sort imports by length without comments.
 * Only touch imports at root indentation level.
 * `from` imports always comes last.
