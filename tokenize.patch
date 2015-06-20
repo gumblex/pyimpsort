@@ -1,0 +1,35 @@
+--- a/Lib/tokenize.py	2015-06-20 14:42:13.195569392 +0800
++++ b/Lib/tokenize.py	2015-06-20 14:28:41.489982077 +0800
+@@ -244,8 +244,10 @@
+ 
+     def untokenize(self, iterable):
+         it = iter(iterable)
++        indents = []
++        startline = False
+         for t in it:
+-            if len(t) == 2:
++            if len(t) < 5:
+                 self.compat(t, it)
+                 break
+             tok_type, token, start, end, line = t
+@@ -254,6 +256,20 @@
+                 continue
+             if tok_type == ENDMARKER:
+                 break
++            if tok_type == INDENT:
++                indents.append(token)
++                continue
++            elif tok_type == DEDENT:
++                indents.pop()
++                self.prev_row, self.prev_col = end
++                continue
++            elif tok_type in (NEWLINE, NL):
++                startline = True
++            elif startline and indents and start[1]:
++                indent = indents[-1]
++                self.tokens.append(indent)
++                self.prev_col = len(indent)
++                startline = False
+             self.add_whitespace(start)
+             self.tokens.append(token)
+             self.prev_row, self.prev_col = end
