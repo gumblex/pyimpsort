@@ -9,6 +9,7 @@ Sort the imports in Python scripts by length.
 ## Feature
 
 **Update:** The following bug is fixed in 3.4.4rc1+, 3.5+, 2.7.11rc1+
+
 **WARNING:** Due to a [bug](https://bugs.python.org/issue20387) in `tokenize.untokenize`, the result may not be correct
 when using tabs for indentation if the Python (2.7, 3.4 or 3.5) installed is not the latest. Apply the `tokenize.patch`
 can (partly) solve the problem.
